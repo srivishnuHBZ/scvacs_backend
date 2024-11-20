@@ -21,7 +21,8 @@
 		"is-empty": "^1.2.0",
 		"jsonwebtoken": "^8.5.1",
 		"mysql2": "^2.3.3",
-		"sequelize": "^6.12.0-beta.2"
+		"sequelize": "^6.12.0-beta.2",
+		"tedious": "^18.6.1"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.15",

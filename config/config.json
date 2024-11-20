@@ -1,25 +1,18 @@
-
-
 {
   "development": {
-    "username": "u317722830_nextpak",
-    "password": "Nextpak@123",
-    "database": "u317722830_carticket",
-    "host": "185.224.137.129",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "u317722830_nextpak",
-    "password": "Nextpak@123",
-    "database": "u317722830_carticket",
-    "host": "185.224.137.129",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "u317722830_nextpak",
-    "password": "Nextpak@123",
-    "database": "u317722830_carticket",
-    "host": "185.224.137.129",
-    "dialect": "mysql"
+    "username": "vnpradmin",
+    "password": "Vnpr@1234",
+    "database": "vnpr",
+    "host": "vnpr.database.windows.net",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "encrypt": true,
+        "trustServerCertificate": true
+      }
+    },
+    "port": 1433
   }
 }
+
+
