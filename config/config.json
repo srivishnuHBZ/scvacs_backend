@@ -1,0 +1,25 @@
+
+
+{
+  "development": {
+    "username": "u317722830_nextpak",
+    "password": "Nextpak@123",
+    "database": "u317722830_carticket",
+    "host": "185.224.137.129",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "u317722830_nextpak",
+    "password": "Nextpak@123",
+    "database": "u317722830_carticket",
+    "host": "185.224.137.129",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "u317722830_nextpak",
+    "password": "Nextpak@123",
+    "database": "u317722830_carticket",
+    "host": "185.224.137.129",
+    "dialect": "mysql"
+  }
+}
