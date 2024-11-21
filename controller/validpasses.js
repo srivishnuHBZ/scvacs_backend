@@ -5,38 +5,46 @@ let valid_passes = db.valid_passes;
 let vehicle = db.vehicle;
 //create pass
 exports.createPass = asyncHandler(async (req, res, next) => {
-    // req.body.Pass_Type = "normal";
-    // req.body.Pass_Number = new Date().getFullYear()
     try {
+        // Get vehicle data from the database
         const vehicleData = await vehicle.findAll();
-        
-    let obj = req.body;
-    obj.Pass_Type = "normal";
-    obj.Pass_Year = new Date().getFullYear();
-    
+
+        // Create the pass object without the identity column
+        let obj = req.body;
+        obj.Pass_Type = "normal";
+        obj.Pass_Year = new Date().getFullYear();
+
+        // Create a new valid pass
         const valid_pass = await valid_passes.create(obj);
-        console.log(valid_pass?.null)//valid pass number
-        // console.log(valid.pass?.dataValues?.License_Plate_Number)
-        let tempVehicleData = vehicleData.find(x => x.License_Plate_Number === valid_pass.License_Plate_Number)
+
+        // Find the vehicle corresponding to the valid pass
+        let tempVehicleData = vehicleData.find(x => x.License_Plate_Number === valid_pass.License_Plate_Number);
+        
         if (tempVehicleData) {
-            tempVehicleData.Valid_Pass = valid_pass?.null;
+            tempVehicleData.Valid_Pass = valid_pass.Pass_Number; // Assuming Pass_Number is auto-generated
+            
+            // Prepare the update object for the vehicle
             const tempObj = {
                 Valid_Pass: tempVehicleData.Valid_Pass
-            }
-            console.log(tempVehicleData.id, tempVehicleData.Valid_Pass)
+            };
+
+            // Update the vehicle table with the new valid pass number
             const update = await vehicle.update(tempObj, {
                 where: {
                     id: tempVehicleData.id
                 }
             });
-            console.log("updated vehicle table")
+
+            console.log("Updated vehicle table");
         }
+
         res.status(201).json({ success: true, msg: "Data created successfully" });
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ success: false, msg: "An error occurred" });
     }
-})
+});
 //get all passes
 exports.getAllPasses = asyncHandler(async (req, res, next) => {
     try {
