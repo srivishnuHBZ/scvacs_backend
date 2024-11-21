@@ -18,25 +18,25 @@ exports.createPass = asyncHandler(async (req, res, next) => {
         const valid_pass = await valid_passes.create(obj);
 
         // Find the vehicle corresponding to the valid pass
-        let tempVehicleData = vehicleData.find(x => x.License_Plate_Number === valid_pass.License_Plate_Number);
+        // let tempVehicleData = vehicleData.find(x => x.License_Plate_Number === valid_pass.License_Plate_Number);
         
-        if (tempVehicleData) {
-            tempVehicleData.Valid_Pass = valid_pass.Pass_Number; // Assuming Pass_Number is auto-generated
+        // if (tempVehicleData) {
+        //     tempVehicleData.Valid_Pass = valid_pass.Pass_Number; // Assuming Pass_Number is auto-generated
             
-            // Prepare the update object for the vehicle
-            const tempObj = {
-                Valid_Pass: tempVehicleData.Valid_Pass
-            };
+        //     // Prepare the update object for the vehicle
+        //     const tempObj = {
+        //         Valid_Pass: tempVehicleData.Valid_Pass
+        //     };
 
-            // Update the vehicle table with the new valid pass number
-            const update = await vehicle.update(tempObj, {
-                where: {
-                    id: tempVehicleData.id
-                }
-            });
+        //     // Update the vehicle table with the new valid pass number
+        //     const update = await vehicle.update(tempObj, {
+        //         where: {
+        //             id: tempVehicleData.id
+        //         }
+        //     });
 
-            console.log("Updated vehicle table");
-        }
+        //     console.log("Updated vehicle table");
+        // }
 
         res.status(201).json({ success: true, msg: "Data created successfully" });
     }
